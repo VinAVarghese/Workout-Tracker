@@ -87,14 +87,23 @@ router.get("/workouts", (req, res) => {
   db.User.find({ _id: req.session.user.id })
     .populate("workouts")
     .then(userData => {
-      res.json(userData);
+      res.json(userData[0].workouts);
     })
     .catch(err => {
       res.json(err);
     });
 });
 
-
+// Update Last workoutDate
+router.post("/update/workout", (req, res) => {
+  db.Workout.findOneAndUpdate({_id:req.body.id}, {$replace: {workoutDate:Date.now}})
+  .then(workout => {
+    res.json(workout);
+  })
+  .catch(err => {
+    res.json(err);
+  });
+})
 
 // /////// EXERCISES ROUTES /////// //
 
@@ -114,8 +123,8 @@ router.post("/create/exercise", (req, res) => {
 router.get("/exercises/:id", (req, res) => {
   db.Workout.find({ _id: req.params.id })
     .populate("exercises")
-    .then(workoutExercises => {
-      res.json(workoutExercises);
+    .then(userData => {
+      res.json(userData[0]);
     })
     .catch(err => {
       res.json(err);

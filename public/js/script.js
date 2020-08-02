@@ -67,3 +67,5 @@ $("#signupBtn").on("click", (event) => {
         location.reload();
     })
 })
+
+// Add A Logout Button
