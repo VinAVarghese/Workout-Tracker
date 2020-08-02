@@ -5,7 +5,7 @@ $(window).on("load", () => {
         url: "/workouts",
         method: "GET",
         data: "check"
-    }).done((workouts) => {
+    }).done(function (workouts) {
         for (let i = 0; i < workouts.length; i++) {
             let nameDiv = $("<div>");
             nameDiv.attr("class", "text-center");
@@ -17,10 +17,9 @@ $(window).on("load", () => {
             dateDiv.text(`${workouts[i].workoutDate}`);
             nameDiv.append(dateDiv)
             let goBtn = $("<button>");
-            goBtn.attr("id", "goBtn")
-            goBtn.attr("class", "button")
-            goBtn.attr("data-id", `${workouts[i]._id}`)
-            goBtn.text("Let's Go!")
+            goBtn.attr("class", "goBtn button")
+            goBtn.attr("id", `${workouts[i]._id}`)
+            goBtn.text("Go!")
             dateDiv.after(goBtn)
         }
     }).fail((err) => err)
@@ -29,7 +28,7 @@ $(window).on("load", () => {
 
 // Submit Workout Button / PASSED TESTING
 // Listener > post route to add workout and reload page
-$("#newWorkoutForm").on("submit", function () {
+$("#newWorkoutForm").on("submit", () => {
     event.preventDefault();
     let workoutName = $("#workoutName").val()
     let workoutDate = $("#workoutDate").val()
@@ -47,11 +46,11 @@ $("#newWorkoutForm").on("submit", function () {
 
 // Go Workout button / NOT PASSING TESTING
 // Listener > route to grab workout _id and load exercise page with it as hash
-$(document).ready(()=>{
-    $("#goBtn").click(function () {
+$(document).ready(function() {
+    $(".goBtn").on("click", function (event) {
         event.preventDefault();
         console.log("goBtn working");
-        let workoutId = this.data-id;
+        let workoutId = this.id;
         location.href = `/exercise.html#${workoutId}`
     })
 })

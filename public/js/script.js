@@ -68,4 +68,13 @@ $("#signupBtn").on("click", (event) => {
     })
 })
 
-// Add A Logout Button
+// Logout Button
+$("#logoutBtn").on("click", (event) => {
+    event.preventDefault();
+    $.ajax({
+        url: "/logout",
+        method: "GET"
+    }).then(() => {
+        location.href = "/"
+    })
+})
