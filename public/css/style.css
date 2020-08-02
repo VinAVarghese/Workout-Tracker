@@ -1,0 +1,21 @@
+body{
+    background-color: #d8d7da;
+    background: url("../assets/images/adam-wilson-unsplash.jpg") no-repeat center center fixed;
+    background-size: cover;
+}
+
+.buffer-and-background
+{
+    position: relative;
+    top: 17vh;
+    background-color: #d8d7da9d;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.background-div
+{
+    background-color: #d8d7da9d;
+    border-radius: 20px;
+    padding: 20px;
+}
