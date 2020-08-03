@@ -3,9 +3,8 @@
 $(window).on("load", () => {   
     $.ajax({
         url: "/workouts",
-        method: "GET",
-        data: "check"
-    }).done(function (workouts) {
+        method: "GET"
+    }).done((workouts) => {
         for (let i = 0; i < workouts.length; i++) {
             let nameDiv = $("<div>");
             nameDiv.attr("class", "text-center");
@@ -47,7 +46,7 @@ $("#newWorkoutForm").on("submit", () => {
 // Go Workout button / NOT PASSING TESTING
 // Listener > route to grab workout _id and load exercise page with it as hash
 $(document).ready(function() {
-    $(".goBtn").on("click", function (event) {
+    $(".pastWorkoutList").on("click", ".goBtn", function (event) {
         event.preventDefault();
         console.log("goBtn working");
         let workoutId = this.id;

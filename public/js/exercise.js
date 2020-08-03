@@ -1,55 +1,57 @@
-// On page load 
+// On page load / PASSED TESTING
 // get route for all exercises for specific workout > render in exercises column
 $(window).on("load", () => {
-    const workoutId = window.location.hash.substring(1)
+    let workoutId = window.location.hash.substring(1)
     $.ajax({
         url: `/exercises/${workoutId}`,
         method: "GET"
     }).done((workout) => {
         $(".workout-name").text(`${workout.workoutName}`)
+        console.log(workout);
         for (let i = 0; i < workout.exercises.length; i++) {
             let nameDiv = $("<h5>");
-            nameDiv.attr("class", "text-center");
+            nameDiv.attr("class", "text-center bold-text");
             nameDiv.text(`${workout.exercises[i].exerciseName}`);
             $(".exerciseList").prepend(nameDiv);
 
-            if (workout.exercises[i].weight) {
-                let weight = $("<div>");
-                weight.attr("class", "text-center")
-                weight.text(`${workout.exercises[i].weight}`);
-                nameDiv.append(weight)
-            }
-            if (workout.exercises[i].sets) {
-                let sets = $("<div>");
-                sets.attr("class", "text-center")
-                sets.text(`${workout.exercises[i].sets}`);
-                nameDiv.append(sets)
-            }
-            if (workout.exercises[i].reps) {
-                let reps = $("<div>");
-                reps.attr("class", "text-center")
-                reps.text(`${workout.exercises[i].reps}`);
-                nameDiv.append(reps)
+            if (workout.exercises[i].distance) {
+                let distance = $("<p>");
+                distance.attr("class", "text-center no-margin")
+                distance.text(`Distance: ${workout.exercises[i].distance}`);
+                nameDiv.after(distance)
             }
             if (workout.exercises[i].duration) {
-                let duration = $("<div>");
-                duration.attr("class", "text-center")
-                duration.text(`${workout.exercises[i].duration}`);
-                nameDiv.append(duration)
+                let duration = $("<p>");
+                duration.attr("class", "text-center no-margin")
+                duration.text(`Duration: ${workout.exercises[i].duration}`);
+                nameDiv.after(duration)
             }
-            if (workout.exercises[i].distance) {
-                let distance = $("<div>");
-                distance.attr("class", "text-center")
-                distance.text(`${workout.exercises[i].distance}`);
-                nameDiv.append(distance)
+            if (workout.exercises[i].reps) {
+                let reps = $("<p>");
+                reps.attr("class", "text-center no-margin")
+                reps.text(`Reps: ${workout.exercises[i].reps}`);
+                nameDiv.after(reps)
+            }
+            if (workout.exercises[i].sets) {
+                let sets = $("<p>");
+                sets.attr("class", "text-center no-margin")
+                sets.text(`Sets: ${workout.exercises[i].sets}`);
+                nameDiv.after(sets)
+            }
+            if (workout.exercises[i].weight) {
+                let weight = $("<p>");
+                weight.attr("class", "text-center no-margin")
+                weight.text(`Weight: ${workout.exercises[i].weight}`);
+                nameDiv.after(weight)
             }
         }
     }).fail((err) => err)
 })
-// Submit Exercise Button
+// Submit Exercise Button / PASSED TESTING
     // listner > post route to add exercise and reload page
-$("#newExerciseForm").on("submit", function () {
+$("#newExerciseForm").on("submit", (event) => {
     event.preventDefault();
+    let workout_id = window.location.hash.substring(1)
     let exerciseName = $("#exerciseName").val()
     let weight = $("#weight").val()
     let sets = $("#sets").val()
@@ -62,18 +64,30 @@ $("#newExerciseForm").on("submit", function () {
         sets,
         reps,
         duration,
-        distance
+        distance,
+        workout_id
     }
     $.ajax("/create/exercise", {
         type: "POST",
         data: exerciseData
-    }).then((res) => {
+    }).then(() => {
         location.reload()
     })
 })
 
-// Finish Workout
+// Complete Workout
     // listener > update route for workout's date (needs to be created)
+$("#completeWorkout").on("click", (event) => {
+    event.preventDefault();
+    let id = window.location.hash.substring(1);
+    let data = {
+        id
+    }
+    $.ajax("/update/workout", {
+        type: "POST",
+        data: data
+    }).then(() => {
+        location.href = "/workout.html"
+    })
+})
 
-// Back button
-    // listner > route to load workout page

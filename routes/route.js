@@ -94,9 +94,9 @@ router.get("/workouts", (req, res) => {
     });
 });
 
-// Update Last workoutDate / NOT TESTED
+// Update Last workoutDate / NOT PASSING TEST
 router.post("/update/workout", (req, res) => {
-  db.Workout.findOneAndUpdate({_id:req.body.id}, {$replace: {workoutDate:Date.now}})
+  db.Workout.findOneAndUpdate({_id:req.body.id}, {$set: {workoutDate:Date.now}})
   .then(workout => {
     res.json(workout);
   })
