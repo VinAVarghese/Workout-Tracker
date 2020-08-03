@@ -7,19 +7,21 @@ $(window).on("load", () => {
     }).done((workouts) => {
         for (let i = 0; i < workouts.length; i++) {
             let nameDiv = $("<div>");
-            nameDiv.attr("class", "text-center");
+            nameDiv.attr("class", "text-center bold-text");
             nameDiv.text(`${workouts[i].workoutName}`);
             $(".pastWorkoutList").prepend(nameDiv);
             let dateDiv = $("<div>");
             dateDiv.attr("class", "text-center")
-            // dateDiv.attr("type", "date")
-            dateDiv.text(`${workouts[i].workoutDate}`);
-            nameDiv.append(dateDiv)
+            dateDiv.text(`Last Done: ${workouts[i].workoutDate}`);
+            nameDiv.after(dateDiv)
+            let btnDiv = $("<div>");
+            btnDiv.attr("class", "grid-x align-center");
+            dateDiv.after(btnDiv)
             let goBtn = $("<button>");
             goBtn.attr("class", "goBtn button")
             goBtn.attr("id", `${workouts[i]._id}`)
             goBtn.text("Go!")
-            dateDiv.after(goBtn)
+            btnDiv.append(goBtn)
         }
     }).fail((err) => err)
 })

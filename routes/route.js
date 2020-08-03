@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const db = require("../models");
+const moment = require("moment");
 const bcrypt = require("bcrypt");
 
 
@@ -96,7 +97,7 @@ router.get("/workouts", (req, res) => {
 
 // Update Last workoutDate / NOT PASSING TEST
 router.post("/update/workout", (req, res) => {
-  db.Workout.findOneAndUpdate({_id:req.body.id}, {$set: {workoutDate:Date.now}})
+  db.Workout.update({_id:req.body.id}, {$set: {workoutDate:moment().format('DD-MM-YYYY')}})
   .then(workout => {
     res.json(workout);
   })

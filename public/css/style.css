@@ -4,9 +4,14 @@ body {
     background-size: cover;
 }
 
+#top-logo{
+    width: 200px;
+    margin-top: 5vh;
+}
+
 .buffer-and-background {
     position: relative;
-    top: 17vh;
+    top: 5vh;
     background-color: #d8d7da9d;
     border-radius: 20px;
     padding: 20px;
@@ -25,7 +30,7 @@ body {
 .bold-text{
     font-weight: bold;
 }
- #workout-button{
+ #workout-button, #logoutBtn{
     color: black;
     margin: 0;
     font-size: 16px;
@@ -36,5 +41,5 @@ body {
  }
 
  #top-menu{
-     margin-bottom: 5px;
+    margin-bottom: 5px;
  }
