@@ -15,7 +15,7 @@
   
   Feel free to email with any suggestions or questions with the subject "RE:Forward2Fitness"
   ## Links/Images
-  [Click For Deployed Application](#PlaceholderLink)
+  [Click For Deployed Application](https://forward2fitness.herokuapp.com/)
 
   ![Screenshot](./public/assets/screenshot1.png)
   ![Screenshot](./public/assets/screenshot2.png)
