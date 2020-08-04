@@ -60,8 +60,8 @@ $("#signupBtn").on("click", (event) => {
         method: "POST",
         data: userObj
     }).done(function (user) {
-        console.log('Signed up successfully')
-        location.href = "/workout.html"
+        alert('Signed up successfully')
+        location.reload()
     }).fail(function (err) {
         console.log(err);
         location.reload();
