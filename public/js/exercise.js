@@ -1,5 +1,5 @@
 // On page load / PASSED TESTING
-// get route for all exercises for specific workout > render in exercises column
+    // get route for all exercises for specific workout > render in exercises column
 $(window).on("load", () => {
     let workoutId = window.location.hash.substring(1)
     $.ajax({
@@ -7,12 +7,11 @@ $(window).on("load", () => {
         method: "GET"
     }).done((workout) => {
         $(".workout-name").text(`${workout.workoutName}`)
-        console.log(workout);
         for (let i = 0; i < workout.exercises.length; i++) {
             let nameDiv = $("<h5>");
             nameDiv.attr("class", "text-center bold-text");
             nameDiv.text(`${workout.exercises[i].exerciseName}`);
-            $(".exerciseList").prepend(nameDiv);
+            $(".exerciseList").append(nameDiv);
 
             if (workout.exercises[i].distance) {
                 let distance = $("<p>");
@@ -41,14 +40,39 @@ $(window).on("load", () => {
             if (workout.exercises[i].weight) {
                 let weight = $("<p>");
                 weight.attr("class", "text-center no-margin")
-                weight.text(`Weight: ${workout.exercises[i].weight}`);
+                weight.text(`Weight: ${workout.exercises[i].weight}lbs`);
                 nameDiv.after(weight)
             }
         }
     }).fail((err) => err)
 })
+
+// Combined Weight Button
+  // listener > get route to add up exercise weights
+$("#statBtn").on("click", () => {
+    let workoutId = window.location.hash.substring(1)
+    $.ajax({
+        url: `/exercises/${workoutId}`,
+        method: "GET"
+    }).done((workout) => {
+        let weightArr = []
+        for (let i = 0; i < workout.exercises.length; i++) {
+            weightArr.push(workout.exercises[i].weight)
+        }
+        console.log(weightArr);
+        if (weightArr !== []) {
+            let totalWeight = weightArr.reduce((total,num)=>{
+                return total + num
+            });
+            $("#totalWeight").text(`    ${totalWeight}lbs`)
+        } else{
+            $("#totalWeight").text(`    0lbs`)
+        }
+    }).fail((err) => err)
+})
+
 // Submit Exercise Button / PASSED TESTING
-    // listner > post route to add exercise and reload page
+    // listener > post route to add exercise and reload page
 $("#newExerciseForm").on("submit", (event) => {
     event.preventDefault();
     let workout_id = window.location.hash.substring(1)

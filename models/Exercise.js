@@ -7,10 +7,10 @@ const ExerciseSchema = new Schema({
         required: "Name of Exercise Required."
     },
     weight: {
-        type: String,
+        type: Number,
     },
     sets: {
-        type: String,
+        type: Number,
     },
     reps: {
         type: String,

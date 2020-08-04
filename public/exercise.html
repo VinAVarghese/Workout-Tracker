@@ -18,8 +18,14 @@
             <a id="workout-button" class="background-div button" href="/workout.html">My Workouts</a>
             <button id="logoutBtn" class="background-div button">Log Out</button>
         </div>
-        <div class="grid-x align-center">
-            <h1 class="background-div workout-name">Workout Name</h1>
+        <div class="background-div">
+            <div class="grid-x align-center">
+                <h1 class="workout-name">Workout Name</h1>
+            </div>
+            <div class="grid-x align-center">
+                <button id="statBtn" class="button">Workout's Total Weight:</button>
+                <p id="totalWeight" class="text-center align-self-middle"></p>
+            </div>
         </div>
         <br>
         <div class="grid-x grid-margin-x">
@@ -28,22 +34,22 @@
                 <h5 class="text-center">Leave nonrelevent areas blank</h5>
                 <form id="newExerciseForm">
                     <label> Exercise Name
-                        <input id="exerciseName" type="text" placeholder="ex. Warm Up Run">
+                        <input id="exerciseName" type="text" placeholder="ex. Squat">
                     </label>
-                    <label> Weight
-                        <input id="weight" type="text" placeholder="ex. 2lbs (ankle weights)">
+                    <label> Weight (lbs)
+                        <input id="weight" type="text" placeholder="ex. 100">
                     </label>
                     <label> Sets
-                        <input id="sets" type="text" placeholder="ex. 1 set">
+                        <input id="sets" type="text" placeholder="ex. 3">
                     </label>
                     <label> Reps
-                        <input id="reps" type="text" placeholder="ex. 1 rep">
+                        <input id="reps" type="text" placeholder="ex. 12/10/8">
                     </label>
                     <label> Duration
                         <input id="duration" type="text" placeholder="ex. 10 mins">
                     </label>
                     <label> Distance
-                        <input id="distance" type="text" placeholder="ex. > 1 Mile">
+                        <input id="distance" type="text" placeholder="ex. 1 Mile">
                     </label>
                     <div class="grid-x align-center">
                         <button type="submit" class="button">Add</button>
