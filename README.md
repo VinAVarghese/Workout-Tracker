@@ -2,10 +2,16 @@
   This lightweight application is to track the user's workout routine. Using Moment.js, Express, and MongoDB with Mongoose schemas, the app tracks the names of different workouts, the exercises that make up the workout and the last time the user did that workout. The user can add new workouts and add exercise details to each one. Also, if the user is interested, the app calculates the total weight lifted within each workout.
   ## Table of Contents
   1. [Installation](#Installation)
+  2. [Testing](#Testing)
   2. [Usage](#Usage)
   3. [Questions](#Questions)
   ## Installation
-       npm install and add SESSION_SECRET for local repo setup
+       Local repo setup
+       npm install & add SESSION_SECRET
+  ## Testing
+       To test app 
+       Username: testuser 
+       Password: testpass1010
   ## Usage
   For anyone seeking to reach their fitness goals quicker, tracking workout progress is proven to help and this app is for you.
   ## Questions
